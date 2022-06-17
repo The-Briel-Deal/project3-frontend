@@ -7,13 +7,30 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { login, logout } from "../services/firebase";
+import CartIcon from "../Cart/CartIcon";
 
-export default function MediaCard(props, id) {
+const MediaCard = (props, id) => {
   const [newItem, setNewItem] = useState(null);
   const getItem = async () => {
     const response = await fetch(URL);
     const data = await response.json();
     setNewItem(data);
+  };
+
+  const isAdminFn = () => {
+    if (props.user.email === "danewjkim@gmail.com") {
+      return (
+        <Button
+          size="small"
+          onClick={(e) => {
+            removeItem(e, props.item._id);
+          }}
+        >
+          <i class="fa-solid fa-trash-can fa-3x"></i>
+        </Button>
+      );
+    }
   };
 
   const history = useHistory();
@@ -57,21 +74,13 @@ export default function MediaCard(props, id) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to cart</Button>
         <Button size="small">
-          <a href={props.item.linkto} target="_blank">
-            Purchase
-          </a>
+          +<CartIcon />
         </Button>
-        <Button
-          size="small"
-          onClick={(e) => {
-            removeItem(e, props.item._id);
-          }}
-        >
-          Delete
-        </Button>
+        {props.user ? isAdminFn() : null}
       </CardActions>
     </Card>
   );
-}
+};
+
+export default MediaCard;

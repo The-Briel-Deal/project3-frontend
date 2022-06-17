@@ -16,3 +16,8 @@ body {
 .shoeImg {
   max-width: 200px;
 }
+
+.MuiCardActions-root {
+  display: flex;
+  justify-content: space-between;
+}

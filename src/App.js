@@ -29,6 +29,7 @@ const App = () => {
       <Route exact path="/">
         <div className="main-container">
           <Main
+            user={user}
             URL={URL}
             className="container"
             getShoes={getShoes}
