@@ -5,9 +5,26 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { useHistory, useState, Link } from "react-router-dom";
 
-export default function MediaCard(props) {
+export default function MediaCard(props, id) {
+  const history = useHistory();
+  const URL = "https://pipiopiproj.herokuapp.com/items/";
+
+  const items = props.item;
+
+  const deleteItem = async (id) => {
+    await fetch(URL + id, {
+      method: "DELETE",
+    });
+  };
+
+  const removeItem = (e, id) => {
+    console.log(e.target, id);
+    deleteItem(id);
+    history.push("/");
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <a href={props.item.linkto} target="_blank">
@@ -35,6 +52,14 @@ export default function MediaCard(props) {
           <a href={props.item.linkto} target="_blank">
             Purchase
           </a>
+        </Button>
+        <Button
+          size="small"
+          onClick={(e) => {
+            removeItem(e, props.item._id);
+          }}
+        >
+          Delete
         </Button>
       </CardActions>
     </Card>
