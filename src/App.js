@@ -15,16 +15,29 @@ const App = () => {
     auth.onAuthStateChanged((user) => setUser(user));
   });
 
+  // Copied over from Main.js
+  const [items, setItems] = useState();
+  const getShoes = async () => {
+    const response = await fetch(URL);
+    const data = await response.json();
+    setItems(data);
+  };
+
   return (
     <Fragment>
-      <Header user={user} />
+      <Header user={user} getShoes={getShoes} />
       <Route exact path="/">
         <div className="main-container">
-          <Main URL={URL} className="container" />
+          <Main
+            URL={URL}
+            className="container"
+            getShoes={getShoes}
+            items={items}
+          />
         </div>
       </Route>
       <Route exact path="/create">
-        <Create />
+        <Create getShoes={getShoes} />
       </Route>
     </Fragment>
   );
