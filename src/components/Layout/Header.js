@@ -15,6 +15,7 @@ const Header = (props) => {
       );
     }
   };
+
   return (
     <Fragment>
       <header className={classes.header}>
