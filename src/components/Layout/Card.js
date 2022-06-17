@@ -10,12 +10,14 @@ import { Link } from "react-router-dom";
 export default function MediaCard(props) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="250"
-        image={props.item.img}
-        alt="funky shoes"
-      />
+      <a href={props.item.linkto} target="_blank">
+        <CardMedia
+          component="img"
+          height="250"
+          image={props.item.img}
+          alt="funky shoes"
+        />
+      </a>
       <CardContent>
         <Typography gutterBottom variant="h5" align="center" component="div">
           {props.item.name}
