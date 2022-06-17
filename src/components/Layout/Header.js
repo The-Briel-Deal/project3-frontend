@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { login, logout } from "../services/firebase";
-import headerShowImage from "../../image/shoes1.jpg";
+import headerShowImage from "../../image/header1.jpg";
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
 import { Link } from "react-router-dom";

@@ -40,29 +40,36 @@ const Create = (props) => {
   };
 
   return (
-    <section>
+    <section className="form-container">
       <form onSubmit={handleSubmit}>
+        Name:{" "}
         <input
           type="text"
           value={form.name}
           name="name"
           placeholder="Name"
           onChange={handleChange}
-        />
+        />{" "}
+        <br />
+        Description:{" "}
         <input
           type="text"
           value={form.description}
           name="description"
           placeholder="Description"
           onChange={handleChange}
-        />
+        />{" "}
+        <br />
+        Price:{" "}
         <input
           type="text"
           value={form.price}
           name="price"
           placeholder="Price"
           onChange={handleChange}
-        />
+        />{" "}
+        <br />
+        Image:{" "}
         <input
           type="text"
           value={form.img}
@@ -70,7 +77,8 @@ const Create = (props) => {
           placeholder="Image"
           onChange={handleChange}
         />
-        <input type="submit" value="Create Item" />
+        <br />
+        <input className="form-submit" type="submit" value="Create Item" />
       </form>
     </section>
   );
