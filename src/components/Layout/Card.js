@@ -5,9 +5,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useHistory, useState, Link } from "react-router-dom";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function MediaCard(props, id) {
+  const [newItem, setNewItem] = useState(null);
+  const getItem = async () => {
+    const response = await fetch(URL);
+    const data = await response.json();
+    setNewItem(data);
+  };
+
   const history = useHistory();
   const URL = "https://pipiopiproj.herokuapp.com/items/";
 
@@ -17,11 +25,13 @@ export default function MediaCard(props, id) {
     await fetch(URL + id, {
       method: "DELETE",
     });
+    props.getShoes();
   };
 
   const removeItem = (e, id) => {
     console.log(e.target, id);
     deleteItem(id);
+    // getItem();
     history.push("/");
   };
 
