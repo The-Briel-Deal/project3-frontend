@@ -27,7 +27,7 @@ const MediaCard = (props, id) => {
             removeItem(e, props.item._id);
           }}
         >
-          <i class="fa-solid fa-trash-can fa-3x"></i>
+          <i className="fa-solid fa-trash-can fa-3x"></i>
         </Button>
       );
     }

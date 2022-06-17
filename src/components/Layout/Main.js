@@ -5,13 +5,6 @@ import { useEffect, useState } from "react";
 import "./Main.css";
 
 const Main = (props) => {
-  // const [items, setItems] = useState();
-  // const getShoes = async () => {
-  //   const response = await fetch(props.URL);
-  //   const data = await response.json();
-  //   setItems(data);
-  // };
-
   useEffect(() => {
     props.getShoes();
   }, []);
