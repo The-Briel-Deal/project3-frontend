@@ -1,8 +1,10 @@
+import { Route } from "react-router-dom";
 import { auth } from "./components/services/firebase";
 import { useState, useEffect } from "react";
 import React, { Fragment } from "react";
 import Header from "./components/Layout/Header";
 import Main from "./components/Layout/Main";
+import Create from "./components/Layout/Create";
 import "./App.css";
 
 const App = () => {
@@ -16,9 +18,14 @@ const App = () => {
   return (
     <Fragment>
       <Header user={user} />
-      <div className="main-container">
-        <Main URL={URL} className="container" />
-      </div>
+      <Route exact path="/">
+        <div className="main-container">
+          <Main URL={URL} className="container" />
+        </div>
+      </Route>
+      <Route exact path="/create">
+        <Create />
+      </Route>
     </Fragment>
   );
 };
