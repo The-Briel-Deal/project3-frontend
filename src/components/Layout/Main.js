@@ -20,7 +20,7 @@ const Main = (props) => {
   const loaded = () => {
     return items.map((item) => (
       <div className="main-item" key={item._id}>
-        <MediaCard item={item} />
+        <MediaCard item={item} getShoes={getShoes} />
       </div>
     ));
   };
