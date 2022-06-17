@@ -3,23 +3,28 @@ import { login, logout } from "../services/firebase";
 import headerShowImage from "../../image/shoes1.jpg";
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
-  let isAdmin = false;
-
   const isAdminFn = () => {
     if (props.user.email === "danewjkim@gmail.com") {
-      return <li>Create</li>;
+      return (
+        <Link style={{ textDecoration: "none" }} to="/create">
+          <li>Create</li>
+        </Link>
+      );
     }
   };
   return (
     <Fragment>
       <header className={classes.header}>
-        <h1>Funky Shoes</h1>
+        <Link style={{ textDecoration: "none", color: "white" }} to="/">
+          <h1>Funky Shoes</h1>
+        </Link>
         <div className={classes.combined}>
           <ul>
             {props.user ? isAdminFn() : null}
-            {/* {isAdmin ? <li>Create</li> : null} */}
+
             {props.user ? (
               <li onClick={logout}>Logout</li>
             ) : (
