@@ -26,7 +26,7 @@ const Create = (props) => {
       headers: { "Content-Type": "Application/json" },
       body: JSON.stringify(item),
     });
-    getItem();
+    props.getShoes();
   };
 
   const handleChange = (e) => {
