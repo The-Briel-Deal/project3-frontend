@@ -5,6 +5,7 @@ import React, { Fragment } from "react";
 import Header from "./components/Layout/Header";
 import Main from "./components/Layout/Main";
 import Create from "./components/Layout/Create";
+import Cart from "./components/Cart/Cart";
 import "./App.css";
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
 
   return (
     <Fragment>
+      <Cart />
       <Header user={user} getShoes={getShoes} />
       <Route exact path="/">
         <div className="main-container">
