@@ -1,7 +1,6 @@
 import { Route } from "react-router-dom";
 import { auth } from "./components/services/firebase";
-import { useState, useEffect } from "react";
-import React, { Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Header from "./components/Layout/Header";
 import Main from "./components/Layout/Main";
 import Create from "./components/Layout/Create";
@@ -11,7 +10,19 @@ import "./App.css";
 const App = () => {
   const URL = "https://pipiopiproj.herokuapp.com/items/";
 
+  // Modal States
+  const [cartVisible, setCartVisible] = useState(false);
+  // Cart handler reveal fn
+  const revealCartHandler = () => {
+    setCartVisible(true);
+  };
+  // Cart handler hide fn
+  const hideCartHandler = () => {
+    setCartVisible(false);
+  };
+
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => setUser(user));
   });
@@ -26,8 +37,8 @@ const App = () => {
 
   return (
     <Fragment>
-      <Cart />
-      <Header user={user} getShoes={getShoes} />
+      {cartVisible && <Cart onClose={hideCartHandler} />}
+      <Header user={user} getShoes={getShoes} showCart={revealCartHandler} />
       <Route exact path="/">
         <div className="main-container">
           <Main
