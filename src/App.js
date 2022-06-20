@@ -31,7 +31,13 @@ const App = () => {
   const [items, setItems] = useState();
   const getShoes = async () => {
     const response = await fetch(URL);
-    const data = await response.json();
+    let data = await response.json();
+    let iteration = 0
+    // data = data.map((item) => {
+    //   console.log(item);
+    //   item._id = `${item._id}${iteration}`
+    //   return item;
+    // })
     setItems(data);
   };
 
@@ -44,7 +50,9 @@ const App = () => {
   // function to check to see if the ID gets printed?
 
   const addToCartHandler = (e, id) => {
-    const itemArr = items.filter((item) => item._id === id);
+    const itemArr = items.filter((item) => {
+      return item._id === id
+    });
     setNewItemsArr((previousState) => {
       const newState = [...previousState, itemArr];
       return newState;
