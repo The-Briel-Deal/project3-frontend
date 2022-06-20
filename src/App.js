@@ -35,10 +35,34 @@ const App = () => {
     setItems(data);
   };
 
+  // creating a state for newItemsArr
+  const [newItemsArr, setNewItemsArr] = useState([]);
+  const [newCartAmount, setNewCartAmount] = useState(0);
+  // Creating a state for the total amount
+  const [itemsArr, setItemsArr] = useState(0);
+
+  // function to check to see if the ID gets printed?
+
+  const addToCartHandler = (e, id) => {
+    const itemArr = items.filter((item) => item._id === id);
+    setNewItemsArr((previousState) => [...previousState, itemArr]);
+    // console.log(newItemsArr);
+    console.log(id);
+  };
+
+  console.log(newItemsArr);
+
+  // useEffect(() => addToCartHandler, []);
+
   return (
     <Fragment>
-      {cartVisible && <Cart onClose={hideCartHandler} />}
-      <Header user={user} getShoes={getShoes} showCart={revealCartHandler} />
+      {cartVisible && <Cart onClose={hideCartHandler} itemsArr={itemsArr} />}
+      <Header
+        user={user}
+        getShoes={getShoes}
+        showCart={revealCartHandler}
+        itemsArr={newItemsArr.length}
+      />
       <Route exact path="/">
         <div className="main-container">
           <Main
@@ -47,6 +71,7 @@ const App = () => {
             className="container"
             getShoes={getShoes}
             items={items}
+            addToCartFn={addToCartHandler}
           />
         </div>
       </Route>
