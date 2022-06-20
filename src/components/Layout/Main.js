@@ -13,7 +13,16 @@ const Main = (props) => {
   const loaded = () => {
     return props.items.map((item) => (
       <div className="main-item" key={item._id}>
-        <MediaCard item={item} getShoes={props.getShoes} user={props.user} />
+        <MediaCard
+          item={item}
+          getShoes={props.getShoes}
+          user={props.user}
+          key={item._id}
+          name={item.name}
+          description={item.description}
+          price={item.price}
+          id={item._id}
+        />
       </div>
     ));
   };

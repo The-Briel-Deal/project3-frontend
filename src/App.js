@@ -1,10 +1,12 @@
 import { Route } from "react-router-dom";
 import { auth } from "./components/services/firebase";
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Layout/Header";
 import Main from "./components/Layout/Main";
 import Create from "./components/Layout/Create";
 import Cart from "./components/Cart/Cart";
+import CartProvider from "./components/Store/cart-provider";
+import Input from "./components/UI/Input";
 import "./App.css";
 
 const App = () => {
@@ -36,7 +38,7 @@ const App = () => {
   };
 
   return (
-    <Fragment>
+    <CartProvider>
       {cartVisible && <Cart onClose={hideCartHandler} />}
       <Header user={user} getShoes={getShoes} showCart={revealCartHandler} />
       <Route exact path="/">
@@ -53,7 +55,7 @@ const App = () => {
       <Route exact path="/create">
         <Create getShoes={getShoes} />
       </Route>
-    </Fragment>
+    </CartProvider>
   );
 };
 
