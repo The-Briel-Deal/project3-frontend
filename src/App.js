@@ -37,26 +37,26 @@ const App = () => {
 
   // creating a state for newItemsArr
   const [newItemsArr, setNewItemsArr] = useState([]);
-  const [newCartAmount, setNewCartAmount] = useState(0);
+
   // Creating a state for the total amount
-  const [itemsArr, setItemsArr] = useState(0);
+  // const [itemsArr, setItemsArr] = useState([]);
 
   // function to check to see if the ID gets printed?
 
   const addToCartHandler = (e, id) => {
     const itemArr = items.filter((item) => item._id === id);
-    setNewItemsArr((previousState) => [...previousState, itemArr]);
-    // console.log(newItemsArr);
-    console.log(id);
+    setNewItemsArr((previousState) => {
+      const newState = [...previousState, itemArr];
+      return newState;
+    });
+    // console.log(id);
   };
-
-  console.log(newItemsArr);
 
   // useEffect(() => addToCartHandler, []);
 
   return (
     <Fragment>
-      {cartVisible && <Cart onClose={hideCartHandler} itemsArr={itemsArr} />}
+      {cartVisible && <Cart onClose={hideCartHandler} itemsArr={newItemsArr} />}
       <Header
         user={user}
         getShoes={getShoes}

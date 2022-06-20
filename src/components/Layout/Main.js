@@ -14,6 +14,7 @@ const Main = (props) => {
     return props.items.map((item) => (
       <div className="main-item" key={item._id}>
         <MediaCard
+          mediaCardKey={item._id}
           item={item}
           getShoes={props.getShoes}
           user={props.user}
