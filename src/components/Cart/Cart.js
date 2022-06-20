@@ -5,18 +5,14 @@ import { useState, useEffect } from "react";
 const Cart = (props) => {
   const [totalAmount, setTotalAmount] = useState(0);
 
-  const cartItems = () => {
-    props.itemsArr.map((item) => {
-      // setTotalAmount(totalAmount + item[0].price);
-      console.log(item[0].name);
-    });
-
-    return <ul className={classes["cart-items"]}></ul>;
-  };
-
-  useEffect(() => {
-    setTotalAmount(totalAmount);
-  }, [props.itemsArr]);
+  const cartItems = props.itemsArr.map((item) => {
+    setTotalAmount(totalAmount + item[0].price);
+    console.log(item[0].name);
+  });
+  // return <ul className={classes["cart-items"]}></ul>;
+  // useEffect(() => {
+  //   setTotalAmount(totalAmount);
+  // }, [props.itemsArr]);
 
   return (
     <Modal onClose={props.onClose}>
